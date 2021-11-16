@@ -8,8 +8,6 @@ model = BertForSequenceClassification.from_pretrained(model_path, num_labels=68)
 tokenizer = BertTokenizerFast.from_pretrained(model_path)
 
 
-target_names = load_dataset('csv', data_files={'target':['data/intent.csv']})
-
 def get_prediction(text):
     # prepare our text into tokenized sequence
     inputs = tokenizer(text, padding=True, truncation=True, max_length=max_length, return_tensors="pt")
@@ -19,7 +17,8 @@ def get_prediction(text):
     probs = outputs[0].softmax(1)
     # executing argmax function to get the candidate label
     print("probs-->",probs.argmax().item(),probs.max())
-    return target_names['target'][probs.argmax().item()]
+    return probs.argmax().item(),probs.max()
+    # return target_names['target'][probs.argmax().item()]
 
 
 text = """

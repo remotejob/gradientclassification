@@ -7,7 +7,7 @@ import uvicorn
 
 from pydantic import BaseModel
 
-pretrainedmodel = '20newsgroups_model'
+pretrainedmodel = 'remotejob/gradientclassification_v0'
 max_length = 512
 
 import sqlite3
@@ -55,7 +55,7 @@ app = FastAPI()
 def read_root():
     return {"Hello": "World"}
 
-@app.post("/translator/translate")
+@app.post("/classification")
 def predict(item: Itemask):
     ask = item.ask
     score,intent =  get_reply(model,tokenizer, ask)

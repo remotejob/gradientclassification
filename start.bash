@@ -29,3 +29,6 @@ wc data/*.csv #5914 592,
 sqlite3 -header -csv data/mldata.db 'select id,intent from intenttbl;' > data/intent.csv
 
 
+
+
+
